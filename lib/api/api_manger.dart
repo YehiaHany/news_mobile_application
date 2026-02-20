@@ -1,0 +1,24 @@
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:news/api/api_constants.dart';
+import 'package:news/api/end_points.dart';
+import 'package:news/model/source_response.dart';
+
+class ApiManger{
+  static Future<SourceResponse> getSources() async {
+    Uri url = Uri.https(ApiConstants.baseUrl,EndPoints.sourceApi,{
+      "apiKey": ApiConstants.apiKey
+    });
+    try{
+      var response = await http.get(url);
+      var responseBody = response.body;
+      /// String => json
+      var json = jsonDecode(responseBody);
+      /// json => object
+      return SourceResponse.fromJson(json);
+    }
+    catch(e){
+      rethrow;
+    }
+  }
+}
