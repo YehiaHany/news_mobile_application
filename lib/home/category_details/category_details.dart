@@ -29,7 +29,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
               ApiManger.getSources();
               setState(() {});
             },
-          );;
+          );
         }
 
         /// server => response => success , error

@@ -18,12 +18,16 @@ class CodegenLoader extends AssetLoader{
   "home": "الرئيسية",
   "tryAgain": "حاول مجددا",
   "somethingWentWrong": "حدث خطأ ما",
+  "by": "بواسطة",
+  "noAvailableNews": "لا يوجد اخبار متاحة الأن من هذا المصدر",
   "changeLanguage": "غير اللفة"
 };
 static const Map<String,dynamic> _en = {
   "home": "Home",
   "tryAgain": "Try Again",
   "somethingWentWrong": "Something Went Wrong",
+  "by": "By",
+  "noAvailableNews": "There is now available news right now from this source",
   "changeLanguage": "Change Language"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};

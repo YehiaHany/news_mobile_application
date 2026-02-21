@@ -6,6 +6,8 @@ abstract class  LocaleKeys {
   static const home = 'home';
   static const tryAgain = 'tryAgain';
   static const somethingWentWrong = 'somethingWentWrong';
+  static const by = 'by';
+  static const noAvailableNews = 'noAvailableNews';
   static const changeLanguage = 'changeLanguage';
 
 }
