@@ -1,44 +1,50 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:news/api/api_manger.dart';
+import 'package:news/home/sources/source_widget.dart';
+import 'package:news/home/widgets/main_error_widget.dart';
+import 'package:news/home/widgets/main_loading_widget.dart';
 import 'package:news/model/source_response.dart';
+import 'package:news/translations/locale_keys.g.dart';
 
-class CategoryDetails extends StatelessWidget {
+class CategoryDetails extends StatefulWidget {
   const CategoryDetails({super.key});
 
+  @override
+  State<CategoryDetails> createState() => _CategoryDetailsState();
+}
+
+class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<SourceResponse>(
       future: ApiManger.getSources(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
+          return MainLoadingWidget();
         } else if (snapshot.hasError) {
-          return Column(
-            spacing: 10,
-            children: [
-              Text("Something went wrong "),
-              ElevatedButton(onPressed: () {}, child: Text("Try again")),
-            ],
-          );
+          return MainErrorWidget(
+            errorMessage: LocaleKeys.somethingWentWrong.tr(),
+            onPressed: () {
+              ApiManger.getSources();
+              setState(() {});
+            },
+          );;
         }
 
         /// server => response => success , error
         if (snapshot.data?.status != "ok") {
-          return Column(
-            spacing: 10,
-            children: [
-              Text(snapshot.data!.message!),
-              ElevatedButton(onPressed: () {}, child: Text("Try again")),
-            ],
+          return MainErrorWidget(
+            errorMessage: snapshot.data!.message!,
+            onPressed: () {
+              ApiManger.getSources();
+              setState(() {});
+            },
           );
         }
-        var sourceList = snapshot.data?.sources ?? [];
-        return ListView.builder(
-          itemBuilder: (context, index) {
-            return Text(sourceList[index].name ?? "");
-          },
-          itemCount: sourceList.length,
-        );
+        var sourcesList = snapshot.data?.sources ?? [];
+        return SourceWidget(sourcesList: sourcesList);
+        ;
       },
     );
   }

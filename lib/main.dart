@@ -7,7 +7,8 @@ import 'package:news/home/home_page.dart';
 import 'package:news/providers/theme_provider.dart';
 import 'package:news/translations/codegen_loader.g.dart';
 import 'package:provider/provider.dart';
-
+// flutter pub run easy_localization:generate -S "assets/translations" -O "lib/translations"
+// flutter pub run easy_localization:generate -S "assets/translations" -O "lib/translations" -o "locale_keys.g.dart" -f keys
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -38,14 +39,14 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
+      theme: AppTheme.darkTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeProvider.appTheme,
       routes: {
         AppRoutes.categoryDetailsScreen:(context) => CategoryDetails(),
         AppRoutes.homeScreen:(context) => HomePage(),
       },
-      initialRoute: AppRoutes.categoryDetailsScreen,
+      initialRoute: AppRoutes.homeScreen,
     );
   }
 }
