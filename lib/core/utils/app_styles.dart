@@ -48,10 +48,30 @@ class AppStyles {
     fontWeight: FontWeight.w500,
     color: AppColors.black,
   );
+  static TextStyle bold24Black = GoogleFonts.inter(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: AppColors.black,
+  );
+  static TextStyle medium40Black = GoogleFonts.inter(
+    fontSize: 40,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black,
+  );
+  static TextStyle medium40White = GoogleFonts.inter(
+    fontSize: 40,
+    fontWeight: FontWeight.w500,
+    color: AppColors.white,
+  );
   static TextStyle bold16Black = GoogleFonts.inter(
     fontSize: 16,
     fontWeight: FontWeight.bold,
     color: AppColors.black,
+  );
+  static TextStyle bold20White = GoogleFonts.inter(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: AppColors.white,
   );
   static TextStyle bold16White = GoogleFonts.inter(
     fontSize: 16,

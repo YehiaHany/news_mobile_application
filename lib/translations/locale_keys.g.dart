@@ -8,6 +8,23 @@ abstract class  LocaleKeys {
   static const somethingWentWrong = 'somethingWentWrong';
   static const by = 'by';
   static const noAvailableNews = 'noAvailableNews';
+  static const business = 'business';
+  static const entertainment = 'entertainment';
+  static const general = 'general';
+  static const health = 'health';
+  static const science = 'science';
+  static const sports = 'sports';
+  static const technology = 'technology';
+  static const newsGreeting = 'newsGreeting';
+  static const viewAll = 'viewAll';
+  static const newsApp = 'newsApp';
+  static const goToHome = 'goToHome';
+  static const theme = 'theme';
+  static const language = 'language';
+  static const dark = 'dark';
+  static const light = 'light';
+  static const english = 'english';
+  static const arabic = 'arabic';
   static const changeLanguage = 'changeLanguage';
 
 }

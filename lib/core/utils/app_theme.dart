@@ -12,6 +12,7 @@ class AppTheme {
     appBarTheme: AppBarTheme(
         color: AppColors.white,
         centerTitle: true,
+        titleTextStyle: AppStyles.medium20Black,
         iconTheme: IconThemeData(
           color: AppColors.black,
         )
@@ -23,6 +24,8 @@ class AppTheme {
       labelSmall: AppStyles.medium12Gray,
       headlineMedium: AppStyles.medium24Black,
       headlineLarge: AppStyles.medium20Black,
+      titleLarge: AppStyles.medium40White,
+
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
@@ -45,6 +48,7 @@ class AppTheme {
     ),
     appBarTheme: AppBarTheme(
         color: AppColors.black,
+        titleTextStyle: AppStyles.medium20White,
         centerTitle: true,
         iconTheme: IconThemeData(
           color: AppColors.white,
@@ -57,6 +61,7 @@ class AppTheme {
       labelSmall: AppStyles.medium12Gray,
       headlineMedium: AppStyles.medium24White,
       headlineLarge: AppStyles.medium20White,
+      titleLarge: AppStyles.medium40Black,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
