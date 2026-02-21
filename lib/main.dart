@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       locale: context.locale,
       debugShowCheckedModeBanner: false,
-      theme: AppTheme.darkTheme,
+      theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: themeProvider.appTheme,
       routes: {
