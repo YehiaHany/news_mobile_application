@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news/core/utils/app_colors.dart';
+import 'package:news/extensions/device_dimensions.dart';
+import 'package:news/home/news/news_widget.dart';
 import 'package:news/home/sources/widget/source_tab.dart';
 import 'package:news/model/source_response.dart';
 
@@ -20,6 +22,7 @@ class _SourceWidgetState extends State<SourceWidget> {
     return DefaultTabController(
       length: widget.sourcesList.length,
       child: Column(
+        spacing: context.calcOnHeight(16),
         children: [
           TabBar(
             indicatorColor: Theme.of(context).splashColor,
@@ -38,6 +41,7 @@ class _SourceWidgetState extends State<SourceWidget> {
                     )
                     .toList(),
           ),
+          Expanded(child: NewsWidget(source: widget.sourcesList[selectedIndex]))
         ],
       ),
     );
