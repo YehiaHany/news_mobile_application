@@ -4,11 +4,13 @@ import 'package:news/api/api_manger.dart';
 import 'package:news/home/sources/source_widget.dart';
 import 'package:news/home/widgets/main_error_widget.dart';
 import 'package:news/home/widgets/main_loading_widget.dart';
+import 'package:news/model/category.dart';
 import 'package:news/model/source_response.dart';
 import 'package:news/translations/locale_keys.g.dart';
 
 class CategoryDetails extends StatefulWidget {
-  const CategoryDetails({super.key});
+  final String selectedCategoryId;
+  const CategoryDetails({super.key,required this.selectedCategoryId});
 
   @override
   State<CategoryDetails> createState() => _CategoryDetailsState();
@@ -18,7 +20,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<SourceResponse>(
-      future: ApiManger.getSources(),
+      future: ApiManger.getSources(categoryId: widget.selectedCategoryId),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return MainLoadingWidget();
@@ -26,7 +28,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           return MainErrorWidget(
             errorMessage: LocaleKeys.somethingWentWrong.tr(),
             onPressed: () {
-              ApiManger.getSources();
+              ApiManger.getSources(categoryId: widget.selectedCategoryId);
               setState(() {});
             },
           );
@@ -37,7 +39,7 @@ class _CategoryDetailsState extends State<CategoryDetails> {
           return MainErrorWidget(
             errorMessage: snapshot.data!.message!,
             onPressed: () {
-              ApiManger.getSources();
+              ApiManger.getSources(categoryId: widget.selectedCategoryId);
               setState(() {});
             },
           );

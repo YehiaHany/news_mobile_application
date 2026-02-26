@@ -6,9 +6,10 @@ import 'package:news/model/category.dart';
 import 'package:news/providers/theme_provider.dart';
 import 'package:news/translations/locale_keys.g.dart';
 import 'package:provider/provider.dart';
-
+typedef onCategoryItemClick = void Function(Category);
 class CategoryFragment extends StatelessWidget {
-  const CategoryFragment({super.key});
+  onCategoryItemClick selectedCategory;
+  CategoryFragment({super.key,required this.selectedCategory});
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +31,12 @@ class CategoryFragment extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               itemCount: categoryList.length,
               itemBuilder: (context, index) {
-                return CategoryItem(category: categoryList[index], index: index);
+                return GestureDetector(
+                  // behavior: HitTestBehavior.opaque,
+                    onTap: (){
+                        selectedCategory(categoryList[index]);
+                    },
+                    child: CategoryItem(category: categoryList[index], index: index));
               },
             ),
           ],

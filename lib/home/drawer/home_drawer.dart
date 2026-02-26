@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:news/core/utils/app_colors.dart';
+import 'package:news/core/utils/app_routes.dart';
 import 'package:news/core/utils/app_styles.dart';
 import 'package:news/extensions/device_dimensions.dart';
 import 'package:news/home/drawer/divider_item.dart';
@@ -15,7 +16,8 @@ import '../../core/utils/app_assets.dart';
 import '../../providers/theme_provider.dart';
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key});
+  final VoidCallback goToHome;
+  const HomeDrawer({super.key,required this.goToHome});
 
   @override
   Widget build(BuildContext context) {
@@ -33,9 +35,15 @@ class HomeDrawer extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(LocaleKeys.newsApp.tr(), style: AppStyles.bold24Black),
           ),
-          DrawerItem(
-            title: LocaleKeys.goToHome.tr(),
-            imagePath: AppAssets.homeIcon,
+          GestureDetector(
+            onTap: (){
+              goToHome;
+              Navigator.of(context).pushNamedAndRemoveUntil(AppRoutes.homeScreen, (route)=>false);
+            },
+            child: DrawerItem(
+              title: LocaleKeys.goToHome.tr(),
+              imagePath: AppAssets.homeIcon,
+            ),
           ),
           DividerItem(),
           DrawerItem(

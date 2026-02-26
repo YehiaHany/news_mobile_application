@@ -48,44 +48,40 @@ class CategoryItem extends StatelessWidget {
             bottom: 16,
             left: isEven ? null : context.calcOnWidth(16),
             right: isEven ? context.calcOnWidth(16) : null,
-            child: GestureDetector(
-              onTap: (){
-              },
-              child: Container(
-                padding: EdgeInsetsDirectional.only(
-                  start: isEven ? context.calcOnWidth(16) : 0,
-                  end: isEven ? 0 : context.calcOnWidth(16),
-                ),
-                decoration: BoxDecoration(
-                  color:
-                      isDark
-                          ? AppColors.black.withValues(alpha: 0.5)
-                          : AppColors.white.withValues(alpha: 0.5),
-                  borderRadius: BorderRadius.circular(84),
-                ),
-                child: Row(
-                  textDirection:
-                      isEnglish?isEven ? ui.TextDirection.ltr : ui.TextDirection.rtl:isEven ? ui.TextDirection.rtl : ui.TextDirection.ltr,
-                  spacing: context.calcOnWidth(10),
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      LocaleKeys.viewAll.tr(),
-                      style: Theme.of(context).textTheme.headlineMedium,
+            child: Container(
+              padding: EdgeInsetsDirectional.only(
+                start: isEven ? context.calcOnWidth(16) : 0,
+                end: isEven ? 0 : context.calcOnWidth(16),
+              ),
+              decoration: BoxDecoration(
+                color:
+                    isDark
+                        ? AppColors.black.withValues(alpha: 0.5)
+                        : AppColors.white.withValues(alpha: 0.5),
+                borderRadius: BorderRadius.circular(84),
+              ),
+              child: Row(
+                textDirection:
+                    isEnglish?isEven ? ui.TextDirection.ltr : ui.TextDirection.rtl:isEven ? ui.TextDirection.rtl : ui.TextDirection.ltr,
+                spacing: context.calcOnWidth(10),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    LocaleKeys.viewAll.tr(),
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundColor: isDark ? AppColors.black : AppColors.white,
+                    child: Icon(
+                      isEven
+                          ? Icons.arrow_forward_ios_rounded
+                          : Icons.arrow_back_ios_rounded,
+                      color: isDark ? AppColors.white : AppColors.black,
                     ),
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundColor: isDark ? AppColors.black : AppColors.white,
-                      child: Icon(
-                        isEven
-                            ? Icons.arrow_forward_ios_rounded
-                            : Icons.arrow_back_ios_rounded,
-                        color: isDark ? AppColors.white : AppColors.black,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),

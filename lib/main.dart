@@ -46,7 +46,6 @@ class MyApp extends StatelessWidget {
       darkTheme: AppTheme.darkTheme,
       themeMode: themeProvider.appTheme,
       routes: {
-        AppRoutes.categoryDetailsScreen:(context) => CategoryDetails(),
         AppRoutes.homeScreen:(context) => HomePage(),
       },
       initialRoute: AppRoutes.homeScreen,

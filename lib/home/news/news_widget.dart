@@ -29,7 +29,7 @@ class _NewsWidgetState extends State<NewsWidget> {
           return MainErrorWidget(
             errorMessage: LocaleKeys.somethingWentWrong.tr(),
             onPressed: () {
-              ApiManger.getSources();
+              ApiManger.getNews(widget.source.id ?? "");
               setState(() {});
             },
           );
@@ -39,7 +39,7 @@ class _NewsWidgetState extends State<NewsWidget> {
           return MainErrorWidget(
             errorMessage: snapshot.data!.message!,
             onPressed: () {
-              ApiManger.getSources();
+              ApiManger.getNews(widget.source.id ?? "");
               setState(() {});
             },
           );
