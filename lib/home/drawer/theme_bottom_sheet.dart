@@ -28,14 +28,20 @@ class ThemeBottomSheet extends StatelessWidget {
             title: LocaleKeys.light.tr(),
             iconColor: isDark ? AppColors.transparentColor : null,
             onPressed: () {
-              themeProvider.changeTheme(ThemeMode.light);
+              Navigator.of(context).pop();
+              Future.delayed(Duration(milliseconds: 500),(){
+                themeProvider.changeTheme(ThemeMode.light);
+              });
             },
           ),
           BottomSheetItem(
             title: LocaleKeys.dark.tr(),
             iconColor: isDark ? null : AppColors.transparentColor,
             onPressed: () {
-              themeProvider.changeTheme(ThemeMode.dark);
+              Navigator.of(context).pop();
+              Future.delayed(Duration(milliseconds: 500),(){
+                themeProvider.changeTheme(ThemeMode.dark);
+              });
             },
           ),
         ],

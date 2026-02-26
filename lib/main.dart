@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news/core/utils/app_routes.dart';
 import 'package:news/core/utils/app_theme.dart';
 import 'package:news/home/category_details/category_details.dart';
@@ -8,6 +9,8 @@ import 'package:news/providers/theme_provider.dart';
 import 'package:news/translations/codegen_loader.g.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
+
+import 'core/utils/my_block_observer.dart';
 // flutter pub run easy_localization:generate -S "assets/translations" -O "lib/translations"
 // flutter pub run easy_localization:generate -S "assets/translations" -O "lib/translations" -o "locale_keys.g.dart" -f keys
 Future<void> main() async {
@@ -15,6 +18,7 @@ Future<void> main() async {
   await EasyLocalization.ensureInitialized();
   timeago.setLocaleMessages("en", timeago.EnMessages());
   timeago.setLocaleMessages("ar", timeago.ArMessages());
+  Bloc.observer = MyBlocObserver();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],

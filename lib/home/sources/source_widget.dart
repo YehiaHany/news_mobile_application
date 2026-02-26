@@ -28,7 +28,7 @@ class _SourceWidgetState extends State<SourceWidget> {
             indicatorColor: Theme.of(context).splashColor,
             dividerColor: AppColors.transparentColor,
             tabAlignment: TabAlignment.start,
-            onTap: (index){
+            onTap: (index) {
               setState(() {
                 selectedIndex = index;
               });
@@ -37,11 +37,17 @@ class _SourceWidgetState extends State<SourceWidget> {
             tabs:
                 widget.sourcesList
                     .map(
-                      (source) => SourceTab(source: source, isSelected: selectedIndex == widget.sourcesList.indexOf(source)),
+                      (source) => SourceTab(
+                        source: source,
+                        isSelected:
+                            selectedIndex == widget.sourcesList.indexOf(source),
+                      ),
                     )
                     .toList(),
           ),
-          Expanded(child: NewsWidget(source: widget.sourcesList[selectedIndex]))
+          Expanded(
+            child: NewsWidget(source: widget.sourcesList[selectedIndex]),
+          ),
         ],
       ),
     );
