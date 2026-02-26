@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:news/core/utils/app_colors.dart';
 import 'package:news/extensions/device_dimensions.dart';
 import 'package:news/translations/locale_keys.g.dart';
-import 'package:provider/provider.dart';
-import '../../providers/theme_provider.dart';
 import 'bottom_sheet_item.dart';
 
 class LanguageBottomSheet extends StatelessWidget {
@@ -26,7 +24,7 @@ class LanguageBottomSheet extends StatelessWidget {
           BottomSheetItem(
             title: LocaleKeys.english.tr(),
             iconColor: isEnglish ? null : AppColors.transparentColor,
-            onPressed: () {
+            onPressed: ()  {
               context.setLocale(Locale("en"));
 
             },
@@ -34,7 +32,7 @@ class LanguageBottomSheet extends StatelessWidget {
           BottomSheetItem(
             title: LocaleKeys.arabic.tr(),
             iconColor: isEnglish ? AppColors.transparentColor : null,
-            onPressed: () {
+            onPressed: ()  {
               context.setLocale(Locale("ar"));
             },
           ),

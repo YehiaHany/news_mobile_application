@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.home.tr()),
+        title: Text(selectedCategory!=null?selectedCategory!.id.tr():LocaleKeys.home.tr()),
       ),
       drawer: Drawer(
         backgroundColor: AppColors.black,
