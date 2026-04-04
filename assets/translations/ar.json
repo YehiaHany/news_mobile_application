@@ -1,0 +1,26 @@
+{
+  "home": "الرئيسية",
+  "tryAgain": "حاول مجددا",
+  "somethingWentWrong": "حدث خطأ ما",
+  "by": "بواسطة",
+  "noAvailableNews": "لا يوجد اخبار متاحة الأن من هذا المصدر",
+  "business": "الأعمال",
+  "entertainment": "الترفيه",
+  "general": "عام",
+  "health": "الصحة",
+  "science": "العلوم",
+  "sports": "الرياضة",
+  "technology": "التكنولوجيا",
+  "newsGreeting": "صباح الخير\nإليك بعض الأخبار",
+  "viewAll": "اعرض الجميع",
+  "newsApp": "تطبيق الأخبار",
+  "goToHome": "الذهاب إلى الرئيسية",
+  "theme": "المظهر",
+  "language": "اللغة",
+  "dark": "داكن",
+  "light": "فاتح",
+  "english": "الإنجليزية",
+  "arabic": "العربية",
+  "changeLanguage": "غير اللفة"
+
+}
