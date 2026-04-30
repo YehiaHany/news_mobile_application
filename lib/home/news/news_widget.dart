@@ -1,13 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news/api/api_manger.dart';
 import 'package:news/di.dart';
 import 'package:news/home/news/cubit/news_state.dart';
 import 'package:news/home/news/cubit/news_view_model.dart';
 import 'package:news/home/news/news_item.dart';
-import 'package:news/model/news_response.dart';
-
 import '../../model/source_response.dart';
 import '../../translations/locale_keys.g.dart';
 import '../widgets/main_error_widget.dart';
@@ -22,21 +19,43 @@ class NewsWidget extends StatefulWidget {
 }
 
 class _NewsWidgetState extends State<NewsWidget> {
-  NewsViewModel viewModel = NewsViewModel(newsRepository: injectNewsRepository());
+  NewsViewModel viewModel = NewsViewModel(
+    newsRepository: injectNewsRepository(),
+  );
+  int currentPage = 1;
+  final ScrollController _controller = ScrollController();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    viewModel.getNewsBySourceId(sourceId: widget.source.id ?? "");
+    viewModel.getNewsBySourceId(
+      sourceId: widget.source.id ?? "",
+      page: currentPage,
+    );
+    _controller.addListener((){
+      if(_controller.position.pixels!=0 && _controller.position.atEdge){
+        currentPage++;
+        viewModel.getNewsBySourceId(
+          sourceId: widget.source.id ?? "",
+          page: currentPage,
+        );
+      }
+    });
   }
+
   @override
   void didUpdateWidget(covariant NewsWidget oldWidget) {
     // TODO: implement didUpdateWidget
     super.didUpdateWidget(oldWidget);
-    if(oldWidget.source.id!=widget.source.id){
-      viewModel.getNewsBySourceId(sourceId: widget.source.id ?? "");
+    if (oldWidget.source.id != widget.source.id) {
+      currentPage = 1;
+      viewModel.getNewsBySourceId(
+        sourceId: widget.source.id ?? "",
+        page: currentPage,
+      );
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NewsViewModel, NewsState>(
@@ -53,15 +72,28 @@ class _NewsWidgetState extends State<NewsWidget> {
                 ),
               )
               : ListView.builder(
-                itemBuilder:
-                    (context, index) => NewsItem(news: newsList[index]),
-                itemCount: newsList.length,
+                controller: _controller,
+                physics: const AlwaysScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  if(index <newsList.length) {
+                    return NewsItem(news: newsList[index]);
+                  }
+                  else{
+                    return Container(
+                        color: Colors.red,
+                        child: SizedBox(height: 100,));
+                  }
+                },
+                itemCount: newsList.length+1,
               );
         } else if (state is NewsErrorState) {
           return MainErrorWidget(
             errorMessage: viewModel.errorMessage!,
             onPressed: () {
-              viewModel.getNewsBySourceId(sourceId: widget.source.id ?? "");
+              viewModel.getNewsBySourceId(
+                sourceId: widget.source.id ?? "",
+                page: currentPage,
+              );
               setState(() {});
             },
           );
@@ -70,6 +102,5 @@ class _NewsWidgetState extends State<NewsWidget> {
         }
       },
     );
-
   }
 }

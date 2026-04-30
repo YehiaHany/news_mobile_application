@@ -9,17 +9,24 @@ class NewsViewModel extends Cubit<NewsState>{
   NewsViewModel({required this.newsRepository}):super(NewsLoadingState());
   String? errorMessage;
   List<News>? newsList;
-  Future<void> getNewsBySourceId({required String sourceId}) async {
+  Future<void> getNewsBySourceId({required String sourceId,required int page}) async {
     try{
-      emit(NewsLoadingState());
-      var response = await newsRepository.getNews(sourceId);
+      if(page == 1) {
+        emit(NewsLoadingState());
+      }
+      var response = await newsRepository.getNews(sourceId,page);
       if(response.status == "error"){
         errorMessage = response.message;
         emit(NewsErrorState());
         return;
       }
       if(response.status == "ok"){
-          newsList = response.articles;
+          if(page == 1) {
+            newsList = response.articles;
+          }
+          else{
+            newsList?.addAll(response.articles ?? []);
+          }
           emit(NewsSuccessState());
       }
     }
