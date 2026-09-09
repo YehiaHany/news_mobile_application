@@ -1,4 +1,5 @@
 import 'package:news/api/api_manger.dart';
+import 'package:news/api/dio/dio_manger.dart';
 import 'package:news/data/repository/news/data_sources/remote/news_remote_data_source.dart';
 import 'package:news/model/news_response.dart';
 
@@ -7,7 +8,8 @@ class NewsRemoteDataSourceImpl implements NewsRemoteDataSource{
   NewsRemoteDataSourceImpl({required this.apiManger});
   @override
   Future<NewsResponse> getNews(String sourceId,int page) async {
-    var response = await apiManger.getNews(sourceId,page);
+    // var response = await apiManger.getNews(sourceId,page);
+    var response = await DioManger.getNews(sourceId,page);
     return response;
   }
 }
